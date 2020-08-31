@@ -23,6 +23,9 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
+class PostsView(View):
+    def post(self):
+
 # class IndexView(generic.ListView):
 #     template_name = 'polls/index.html'
 #     context_object_name = 'last_question_list'
@@ -64,6 +67,9 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def posts(request):
+    return render(request, 'polls/posts.html',)
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
