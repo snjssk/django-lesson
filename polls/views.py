@@ -23,9 +23,6 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-class PostsView(View):
-    def post(self):
-
 # class IndexView(generic.ListView):
 #     template_name = 'polls/index.html'
 #     context_object_name = 'last_question_list'
