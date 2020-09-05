@@ -66,6 +66,8 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def posts(request):
+    name = request.POST.get("name", "no name")
+    print(name)
     return render(request, 'polls/posts.html',)
 
 def index(request):

@@ -4,7 +4,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="/polls/posts" method="post">
+<form action="/polls/posts/" method="post">
 {% csrf_token %}
     <div>
       <label for="name">名前</label>
