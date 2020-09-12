@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+group by
+{% endblock %}
+
+{% block main %}
+<div>
+    <p>count: {{ count }}</p>
+    <p>exists: {{ exists }}</p>
+    {% for item in group %}
+    <p>
+        {{ item }}
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}

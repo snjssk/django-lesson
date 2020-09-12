@@ -9,13 +9,16 @@
 <body>
     <header>
         <h1>h1</h1>
-        <img src="{% static 'img/14009302.png' %}" />
+        <img src="{% static 'img/14009302.png' %}" style="width: 80px;" />
+        <hr>
     </header>
+
     <main>
         {% block main %}{% endblock %}
     </main>
 
     <footer>
+        <hr>
         <p>footer</p>
     </footer>
 </body>

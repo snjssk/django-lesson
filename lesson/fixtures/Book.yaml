@@ -1,0 +1,16 @@
+- model: lesson.Book
+  pk: 4
+  fields:
+    isbn: 123
+    title: aaa
+    price: 400
+    publisher: AAA
+    published: 2020-01-01
+- model: lesson.book
+  pk: 5
+  fields:
+    isbn: 222
+    title: aaa
+    price: 400
+    publisher: AAA
+    published: 2020-01-01
