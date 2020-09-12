@@ -1,56 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <main>
-        <div>
-            {% if random >= 70 %}
-            <p>{{ random }}は70以上</p>
-            {% elif random >= 50 %}
-            <p>{{ random }}は50以上</p>
-            {% else %}
-            <p>{{ random }}は50未満</p>
-            {% endif %}
-        </div>
-        <div>
-            {{ flag|yesno:'OK,NG,None' }}
-        </div>
+{% extends 'layout.html' %}
 
-        <div>
-            <h2>week</h2>
-            <div>
-                {% for week in weeks %}
-                <span>{{ week }}</span>
-                <span>{{ forloop.counter }}</span>
-                <span>{{ forloop.first }}</span>
-                <span>{{ forloop.last }}</span>
-                {% endfor %}
-            </div>
-        </div>
+{% block title %}
+aaa
+{% endblock %}
 
-        <div>
-            <h2>empty</h2>
-            <div>
-                {% for e in empties %}
-                <p>{{ e }}</p>
-                {% empty %}
-                <p>データがありません</p>
-                {% endfor %}
-            </div>
-        </div>
+{% block main %}
+<div>
+    {% if random >= 70 %}
+    <p>{{ random }}は70以上</p>
+    {% elif random >= 50 %}
+    <p>{{ random }}は50以上</p>
+    {% else %}
+    <p>{{ random }}は50未満</p>
+    {% endif %}
+</div>
+<div>
+    {{ flag|yesno:'OK,NG,None' }}
+</div>
 
-        <div>
-            <h2>range</h2>
-            <div>
-                {% with "[center:10 as range %}
-            </div>
-        </div>
-    </main>
-</body>
-</html>
+<div>
+    <h2>week</h2>
+    <div>
+        {% for week in weeks %}
+        <span>{{ week }}</span>
+        <span>{{ forloop.counter }}</span>
+        <span>{{ forloop.first }}</span>
+        <span>{{ forloop.last }}</span>
+        {% endfor %}
+    </div>
+</div>
+
+<div>
+    <h2>empty</h2>
+    <div>
+        {% for e in empties %}
+        <p>{{ e }}</p>
+        {% empty %}
+        <p>データがありません</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

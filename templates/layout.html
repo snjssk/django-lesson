@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}| site</title>
+</head>
+<body>
+    <header>
+        <h1>h1</h1>
+        <img src="{% static 'img/14009302.png' %}" />
+    </header>
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>footer</p>
+    </footer>
+</body>
+</html>
