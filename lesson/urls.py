@@ -9,4 +9,5 @@ urlpatterns = [
     path('filter/', views.filter, name='filter'),
     path('get/', views.get, name='get'),
     path('groupby/', views.groupby, name='groupby'),
+    path('review/', views.review, name='review'),
 ]

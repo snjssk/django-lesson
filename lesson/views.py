@@ -61,3 +61,9 @@ def groupby(request):
         'count': group.count(),
         'exists': group.exists(),
     })
+
+
+def review(request):
+    return render(request, 'lesson/review.html', {
+        'book': Book.objects.get(pk=1)
+    })

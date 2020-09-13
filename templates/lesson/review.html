@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<div>
+    <h3>{{ book.title }}</h3>
+    {% for rev in book.review_set.all %}
+    <div>
+        <p>{{ rev.body }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

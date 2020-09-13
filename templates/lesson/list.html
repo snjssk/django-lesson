@@ -14,6 +14,11 @@
             <p>{{ book.isbn }}</p>
             <p>{{ book.title }} / {{ book.price }}</p>
             <p>{{ book.published|date:'DATE_FORMAT' }}</p>
+            {% for author in book.author_set.all %}
+            <div>
+                <span>author: {{ author.name }}</span>
+            </div>
+            {% endfor %}
         </div>
         {% endfor %}
     </main>
