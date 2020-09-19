@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
@@ -10,4 +10,9 @@ urlpatterns = [
     path('get/', views.get, name='get'),
     path('groupby/', views.groupby, name='groupby'),
     path('review/', views.review, name='review'),
+
+    path('root_param/<int:id>', views.root_param, name='root_param'),
+    re_path('^root_param/(?P<id>[0-9]{2,3})$', views.root_param, name='root_param')
+
+
 ]

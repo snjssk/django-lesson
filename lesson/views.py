@@ -67,3 +67,9 @@ def review(request):
     return render(request, 'lesson/review.html', {
         'book': Book.objects.get(pk=1)
     })
+
+
+# idを受け取る
+def root_param(request, id):
+    keyword = request.GET['keyword']
+    return HttpResponse(f' id: {id}, keyword: {keyword}')
