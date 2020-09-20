@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, Http404
 from django.db.models import Q, Count
 
 from .models import Book
@@ -71,5 +71,34 @@ def review(request):
 
 # idを受け取る
 def root_param(request, id):
+    # クエリ情報
     keyword = request.GET['keyword']
     return HttpResponse(f' id: {id}, keyword: {keyword}')
+
+
+# リクエストヘッダー
+def req_header(request):
+    ua = request.headers['User-Agent']
+    return HttpResponse(f' ua:{ua}')
+
+
+# リダイレクト
+def req_redirect(request):
+    return redirect('list')
+
+
+# 404
+# get_object_or_404 で簡略化できる
+def res_notfound(request):
+   try:
+        books = Book.objects.get(pk=100)
+    except Book.DoesNotExist:
+        raise Http404('ありません')
+    return render(request, 'lesson/list.html', {
+        'book': books
+    })
+
+
+# レスポンスヘッダー
+def res_header(request):
+    response = HttpResponse('')

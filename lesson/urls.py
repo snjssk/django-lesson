@@ -12,7 +12,9 @@ urlpatterns = [
     path('review/', views.review, name='review'),
 
     path('root_param/<int:id>', views.root_param, name='root_param'),
-    re_path('^root_param/(?P<id>[0-9]{2,3})$', views.root_param, name='root_param')
+    re_path('^root_param/(?P<id>[0-9]{2,3})$', views.root_param, name='root_param'),
 
-
+    path('req_header/', views.req_header, name='req_header'),
+    path('req_redirect/', views.req_redirect, name='req_redirect'),
+    path('res_notfound/', views.res_notfound, name='res_notfound'),
 ]
