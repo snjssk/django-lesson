@@ -16,5 +16,10 @@ urlpatterns = [
 
     path('req_header/', views.req_header, name='req_header'),
     path('req_redirect/', views.req_redirect, name='req_redirect'),
+
     path('res_notfound/', views.res_notfound, name='res_notfound'),
+    path('res_header/', views.res_header, name='res_header'),
+    path('res_csv/', views.res_csv, name='res_csv'),
+    path('res_json/', views.res_json, name='res_json'),
+    path('setcookie/', views.setcookie, name='setcookie'),
 ]

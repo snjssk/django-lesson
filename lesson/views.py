@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 from django.db.models import Q, Count
+import csv
+import urllib.parse
 
 from .models import Book
 
@@ -91,14 +93,49 @@ def req_redirect(request):
 # get_object_or_404 で簡略化できる
 def res_notfound(request):
    try:
-        books = Book.objects.get(pk=100)
-    except Book.DoesNotExist:
-        raise Http404('ありません')
-    return render(request, 'lesson/list.html', {
-        'book': books
-    })
+       books = Book.objects.get(pk=100)
+   except Book.DoesNotExist:
+       raise Http404('ありません')
+   return render(request, 'lesson/list.html', {
+       'book': books
+   })
 
 
 # レスポンスヘッダー
 def res_header(request):
-    response = HttpResponse('')
+    response = HttpResponse('<message>Hello</message>', content_type='text/xml')
+    response['Content-Disposition'] = 'attachment; filename="hoge.xml"'
+    return response
+
+
+# csv
+def res_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
+    writer = csv.writer(response)
+    writer.writerow([
+        ['yamada', '山田', '30'],
+        ['suzuki', '鈴木', '31'],
+        ['satou', '佐藤', '32'],
+    ])
+    return response
+
+
+# jsonの中身を返却
+def res_json(request):
+    return JsonResponse({
+        'title': 'title',
+        'price': '123'
+    })
+
+
+# クッキー保存
+def setcookie(request):
+    response = HttpResponse(render(request, 'lesson/setcookie.html'))
+    response.set_cookie('app_title',
+        urllib.parse.quote('titles'), 60 * 60 * 24 * 30)
+    return response
+
+
+# クッキー取得
+def getcookie(request):
