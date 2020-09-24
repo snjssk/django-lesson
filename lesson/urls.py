@@ -22,4 +22,5 @@ urlpatterns = [
     path('res_csv/', views.res_csv, name='res_csv'),
     path('res_json/', views.res_json, name='res_json'),
     path('setcookie/', views.setcookie, name='setcookie'),
+    path('getcookie/', views.getcookie, name='getcookie'),
 ]

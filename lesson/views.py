@@ -139,3 +139,7 @@ def setcookie(request):
 
 # クッキー取得
 def getcookie(request):
+    app_title = urllib.parse.unquote(request.COOKIES['app_title']) if 'app_title' in request.COOKIES else '-'
+    return render(request, 'lesson/getcookie.html', {
+        'app_title': app_title
+    })
