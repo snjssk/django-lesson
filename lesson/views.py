@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
+from django.views.generic import TemplateView
 from django.db.models import Q, Count
+from .models import Book
 import csv
 import urllib.parse
-
-from .models import Book
-
 import random
 
 
@@ -143,3 +142,27 @@ def getcookie(request):
     return render(request, 'lesson/getcookie.html', {
         'app_title': app_title
     })
+
+
+# sesson
+def setsesson(request):
+    request.session['app_title'] = 'app_title_session'
+    return HttpResponse('セッションを保存')
+
+
+def getsesson(request):
+    title = request.session['app_title'] \
+        if 'app_title' in request.session else '-'
+    return HttpResponse(title)
+
+
+class MyTempView(TemplateView):
+    # テンプレート名
+    template_name = 'lesson/temp.html'
+    # ビュー変数
+    def get_context_data(self, **kwargs):
+        # contextを取得
+        context = super().get_context_data(**kwargs)
+        # 取得したcontextにビュー変数を追加
+        context['msg'] = 'Hello World!'
+        return context

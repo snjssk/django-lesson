@@ -23,4 +23,9 @@ urlpatterns = [
     path('res_json/', views.res_json, name='res_json'),
     path('setcookie/', views.setcookie, name='setcookie'),
     path('getcookie/', views.getcookie, name='getcookie'),
+
+    path('setsesson/', views.setsesson, name='setsesson'),
+    path('getsesson/', views.getsesson, name='getsesson'),
+
+    path('temp_view/', views.MyTempView.as_view(), name='temp_view'),
 ]
