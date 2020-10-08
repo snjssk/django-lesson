@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.views.generic import TemplateView
+from django.views.decorators.http import require_GET
 from django.db.models import Q, Count
+
 from .models import Book
+from .form import BookForm
+
 import csv
 import urllib.parse
 import random
@@ -166,3 +170,10 @@ class MyTempView(TemplateView):
         # 取得したcontextにビュー変数を追加
         context['msg'] = 'Hello World!'
         return context
+
+# form
+def form_input(request):
+    form = BookForm
+    return render(request, 'lesson/form_input.html', {
+        'form': form
+    })

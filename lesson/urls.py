@@ -28,4 +28,6 @@ urlpatterns = [
     path('getsesson/', views.getsesson, name='getsesson'),
 
     path('temp_view/', views.MyTempView.as_view(), name='temp_view'),
+
+    path('form_input/', views.form_input, name='form_input'),
 ]
