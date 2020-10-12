@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, JsonResponse
 from django.views.generic import TemplateView
-from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_GET, require_POST
 from django.db.models import Q, Count
 
 from .models import Book
@@ -177,3 +177,16 @@ def form_input(request):
     return render(request, 'lesson/form_input.html', {
         'form': form
     })
+
+@require_POST
+def form_process(request):
+    form = BookForm(request.POST)
+    # バリデーションチェック
+    if form.is_valid():
+        return render(request, 'lesson/form_process.html', {
+            'form': form
+        })
+    else:
+        return render(request, 'lesson/form_input.html', {
+            'form': form
+        })

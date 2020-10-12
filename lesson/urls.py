@@ -30,4 +30,5 @@ urlpatterns = [
     path('temp_view/', views.MyTempView.as_view(), name='temp_view'),
 
     path('form_input/', views.form_input, name='form_input'),
+    path('form_process/', views.form_process, name='form_process'),
 ]
