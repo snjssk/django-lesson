@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Book
+
 
 class BookForm(forms.Form):
     isbn = forms.CharField(label='ISBN', required=True, max_length=20)
@@ -7,3 +9,9 @@ class BookForm(forms.Form):
     price = forms.IntegerField(label='価格', required=True, min_value=0)
     publisher = forms.ChoiceField(label='出版社', choices=[('A', 'AAA社'), ('B', 'BBB社'), ('C', 'CCC社'),],)
     published = forms.DateField(label='刊行日', required=True)
+
+
+class BookModelForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ('isbn', 'title', 'price', 'publisher', 'published')

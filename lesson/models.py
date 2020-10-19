@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 
 # Modelクラスの継承
@@ -13,7 +14,13 @@ class Book(models.Model):
     )
     price = models.IntegerField(
         verbose_name='価格',
-        default=0
+        default=0,
+        validators=[
+            MinValueValidator(
+                10,
+                message='価格は整数'
+            )
+        ]
     )
     publisher = models.CharField(
         verbose_name='出版社',

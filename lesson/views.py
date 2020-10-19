@@ -5,7 +5,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.db.models import Q, Count
 
 from .models import Book
-from .form import BookForm
+from .form import BookForm, BookModelForm
 
 import csv
 import urllib.parse
@@ -178,6 +178,7 @@ def form_input(request):
         'form': form
     })
 
+
 @require_POST
 def form_process(request):
     form = BookForm(request.POST)
@@ -190,3 +191,20 @@ def form_process(request):
         return render(request, 'lesson/form_input.html', {
             'form': form
         })
+
+
+# model
+def crud_new(request):
+    form = BookModelForm()
+    return render(request, 'lesson/crud_new.html', {
+        'form': form
+    })
+
+
+@require_POST
+def crud_create(request):
+    obj = Book()
+    form = BookModelForm(request.POST, instance=obj)
+    if form.is_valid():
+        form.save()
+        me

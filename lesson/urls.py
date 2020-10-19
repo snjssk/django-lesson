@@ -31,4 +31,6 @@ urlpatterns = [
 
     path('form_input/', views.form_input, name='form_input'),
     path('form_process/', views.form_process, name='form_process'),
+
+    path('crud_new/', views.crud_new, name='crud_new'),
 ]
