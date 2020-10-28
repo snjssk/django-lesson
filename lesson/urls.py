@@ -1,5 +1,11 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include
+from rest_framework import routers
+from .views import BookViewSet
 from . import views
+
+# routerを定義して、router.register にURLとそのURLがリクエストされた時に呼び出すBookViewSetを紐付け
+router = routers.DefaultRouter()
+router.register('books', BookViewSet)
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -33,4 +39,7 @@ urlpatterns = [
     path('form_process/', views.form_process, name='form_process'),
 
     path('crud_new/', views.crud_new, name='crud_new'),
+
+    # rest api
+    path('api/', include(router.urls), name="api"),
 ]

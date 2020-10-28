@@ -3,9 +3,11 @@ from django.http import HttpResponse, Http404, JsonResponse
 from django.views.generic import TemplateView
 from django.views.decorators.http import require_GET, require_POST
 from django.db.models import Q, Count
+from rest_framework import viewsets, filters
 
 from .models import Book
 from .form import BookForm, BookModelForm
+from .serializers import BookSerializer
 
 import csv
 import urllib.parse
@@ -201,10 +203,14 @@ def crud_new(request):
     })
 
 
-@require_POST
-def crud_create(request):
-    obj = Book()
-    form = BookModelForm(request.POST, instance=obj)
-    if form.is_valid():
-        form.save()
-        me
+# @require_POST
+# def crud_create(request):
+#     obj = Book()
+#     form = BookModelForm(request.POST, instance=obj)
+#     if form.is_valid():
+#         form.save()
+
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all() # 全てのデータを取得
+    serializer_class = BookSerializer
